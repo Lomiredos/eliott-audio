@@ -17,7 +17,7 @@ add_library(eliott-audio STATIC
 
 )
 
-target_include_directories(eliott-audio PUBLIC
-    include/
-    ${CMAKE_PREFIX_PATH}/include/
+target_include_directories(eliott-audio 
+    PUBLIC include/
+    PRIVATE ${CMAKE_PREFIX_PATH}/include/
 )

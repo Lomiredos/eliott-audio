@@ -2,8 +2,11 @@
 #include <vector>
 #include <cstdint>
 #include <stdexcept>
-#include "miniaudio.h"
 
+
+struct ma_engine;
+struct ma_sound;
+struct ma_sound_group;
 namespace ee::audio
 {
 
@@ -14,24 +17,13 @@ namespace ee::audio
     class AudioManager
     {
     private:
-        ma_engine m_engine;
+        ma_engine* m_engine;
 
-        std::vector<ma_sound> m_sounds;
-        std::vector<ma_sound_group> m_soundsGroups;
+        std::vector<ma_sound*> m_sounds;
+        std::vector<ma_sound_group*> m_soundsGroups;
 
         AudioManager();
-        ~AudioManager() {
-            
-            for (size_t i = 0; i < m_sounds.size(); i++){
-                ma_sound_uninit(&m_sounds[i]);
-            }
-            
-            for (size_t i = 0; i < m_soundsGroups.size(); i++){
-                ma_sound_group_uninit(&m_soundsGroups[i]);
-            }
-
-            ma_engine_uninit(&m_engine); 
-            }
+        ~AudioManager();
 
         AudioManager(const AudioManager &) = delete;
         AudioManager &operator=(const AudioManager &) = delete;
