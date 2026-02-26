@@ -6,7 +6,8 @@
 
 struct ma_engine;
 struct ma_sound;
-struct ma_sound_group;
+typedef ma_sound  ma_sound_group;  
+
 namespace ee::audio
 {
 
